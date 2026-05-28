@@ -189,8 +189,7 @@ const state = {
 };
 
 const claimConfig = {
-  keyword: "上船开造",
-  accountName: "GMI Cloud 黑板报",
+  keyword: "我的AITI",
 };
 
 const startScreen = document.querySelector("#start-screen");
@@ -595,7 +594,7 @@ async function copyResult() {
 async function claimToken() {
   await copyText(claimConfig.keyword);
   qrModal.hidden = false;
-  showToast(`已复制【${claimConfig.keyword}】，扫码关注后回复领取`);
+  showToast(`已复制【${claimConfig.keyword}】，扫码关注后立即来测`);
 }
 
 function closeQrModal() {
@@ -634,7 +633,7 @@ function showToast(text) {
 
 async function claimTokenOnly() {
   await copyText(claimConfig.keyword);
-  showToast(`已复制【${claimConfig.keyword}】，去公众号回复即可领取`);
+  showToast(`已复制【${claimConfig.keyword}】，去公众号回复即可开测`);
 }
 
 function closePosterModal() {
@@ -647,13 +646,11 @@ async function generatePoster() {
 
   const posterModal = document.querySelector("#poster-modal");
   const posterPreview = document.querySelector("#poster-preview");
-  const posterDownload = document.querySelector("#poster-download");
-  if (!posterModal || !posterPreview || !posterDownload) return;
+  if (!posterModal || !posterPreview) return;
 
   showToast("正在生成你的个性海报");
   const dataUrl = await createPosterImage(state.result);
   posterPreview.src = dataUrl;
-  posterDownload.href = dataUrl;
   posterModal.hidden = false;
 }
 
@@ -727,43 +724,43 @@ function drawPosterText(ctx, result) {
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 14;
   ctx.font = "900 120px Arial, Microsoft YaHei";
-  ctx.strokeText("AITI", 450, 185);
-  ctx.fillText("AITI", 450, 185);
+  ctx.strokeText("AITI", 450, 225);
+  ctx.fillText("AITI", 450, 225);
 
   ctx.fillStyle = "#07030f";
   ctx.font = "900 34px Arial, Microsoft YaHei";
-  ctx.fillText("模型倾向测试生成报告", 450, 242);
+  ctx.fillText("模型倾向测试生成报告", 450, 282);
 
   ctx.fillStyle = "#c8ff2e";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 8;
-  roundRect(ctx, 250, 278, 400, 76, 0, true, true);
+  roundRect(ctx, 250, 318, 400, 76, 0, true, true);
   ctx.fillStyle = "#07030f";
   ctx.font = "900 46px Arial, Microsoft YaHei";
-  ctx.fillText(result.code, 450, 330);
+  ctx.fillText(result.code, 450, 370);
 
   ctx.fillStyle = "#07030f";
   ctx.font = "900 72px Arial, Microsoft YaHei";
-  wrapCanvasText(ctx, result.title, 450, 430, 720, 82);
+  wrapCanvasText(ctx, result.title, 450, 470, 720, 82);
 
   ctx.font = "900 30px Arial, Microsoft YaHei";
   ctx.fillStyle = "#5b19d8";
-  ctx.fillText(result.rarity, 450, 480);
+  ctx.fillText(result.rarity, 450, 520);
 
   ctx.fillStyle = "#07030f";
   ctx.font = "900 28px Arial, Microsoft YaHei";
   ctx.textAlign = "left";
-  ctx.fillText("常见模型", 118, 1032);
-  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1058, 455);
+  ctx.fillText("常见模型", 118, 1070);
+  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1096, 455);
 
   ctx.fillStyle = "#ffd943";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 8;
   roundRect(ctx, 92, 1232, 716, 82, 0, true, true);
   ctx.fillStyle = "#07030f";
-  ctx.font = "900 27px Arial, Microsoft YaHei";
+  ctx.font = "900 28px Arial, Microsoft YaHei";
   ctx.textAlign = "left";
-  ctx.fillText("回复【上船开造】领取 Token 试用额度", 122, 1284);
+  ctx.fillText("扫码关注 回复【我的AITI】立即来测", 122, 1284);
 }
 
 function drawPosterPills(ctx, items, x, y, maxWidth) {
@@ -794,17 +791,11 @@ async function drawPosterQr(ctx) {
   ctx.fillRect(624, 1012, 164, 164);
   ctx.strokeRect(624, 1012, 164, 164);
   ctx.drawImage(qr, 637, 1025, 138, 138);
-  ctx.fillStyle = "#07030f";
-  ctx.textAlign = "center";
-  ctx.font = "900 19px Arial, Microsoft YaHei";
-  ctx.fillText("扫码关注公众号", 706, 1204);
-  ctx.font = "900 18px Arial, Microsoft YaHei";
-  ctx.fillText("GMI Cloud 黑板报", 706, 1226);
 }
 
 async function drawPosterLogo(ctx) {
   const logo = await loadPosterImage("./assets/gmi-logo-black-cutout.png");
-  drawContainedImage(ctx, logo, 642, 112, 148, 48);
+  drawContainedImage(ctx, logo, 96, 96, 148, 48);
 }
 
 async function drawPosterPersonaImage(ctx, result) {
@@ -813,9 +804,9 @@ async function drawPosterPersonaImage(ctx, result) {
   ctx.save();
   ctx.globalAlpha = 0.22;
   ctx.fillStyle = "#07030f";
-  roundRect(ctx, 218, 944, 464, 54, 0, true, false);
+  roundRect(ctx, 218, 982, 464, 54, 0, true, false);
   ctx.restore();
-  drawContainedImage(ctx, image, 110, 500, 680, 500);
+  drawContainedImage(ctx, image, 110, 540, 680, 500);
 }
 
 function drawContainedImage(ctx, image, x, y, width, height) {
@@ -899,5 +890,3 @@ document.querySelector("#poster-close-btn")?.addEventListener("click", closePost
 document.querySelector("#poster-modal")?.addEventListener("click", (event) => {
   if (event.target === document.querySelector("#poster-modal")) closePosterModal();
 });
-document.querySelector("#poster-copy-tip")?.addEventListener("click", claimTokenOnly);
-

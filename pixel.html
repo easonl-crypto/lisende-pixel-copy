@@ -103,10 +103,13 @@
               </div>
               <p id="result-prompt" class="prompt-card"></p>
               <div class="claim-card">
-                <span class="claim-kicker">TOKEN TRIAL</span>
-                <strong>领取 Token 试用额度！</strong>
-                <p>回复 <mark>上船开造</mark> 领取</p>
-                <button id="claim-btn" class="claim-btn" type="button">复制领取口令</button>
+                <div class="claim-content">
+                  <span class="claim-kicker">TOKEN TRIAL</span>
+                  <strong>领取 Token 试用额度！</strong>
+                  <p>扫码关注 回复 <mark>我的AITI</mark> 立即来测</p>
+                  <button id="claim-btn" class="claim-btn" type="button">复制领取口令</button>
+                </div>
+                <img class="claim-qr" src="./assets/gmi-qrcode.jpg" alt="公众号二维码" />
               </div>
               <div class="result-actions">
                 <button id="restart-btn" class="primary-btn compact" type="button">重测</button>
@@ -117,14 +120,11 @@
         </div>
       </section>
       <div id="qr-modal" class="qr-modal" hidden>
-        <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qr-title">
+        <div class="qr-dialog compact-qr-dialog" role="dialog" aria-modal="true" aria-label="公众号二维码">
           <button id="qr-close-btn" class="qr-close-btn" type="button" aria-label="关闭">×</button>
-          <span class="claim-kicker">GMI CLOUD</span>
-          <h2 id="qr-title">扫码关注公众号</h2>
           <div class="qr-box">
-            <img class="qr-image" src="./assets/gmi-qrcode.jpg" alt="GMI Cloud 黑板报公众号二维码" />
+            <img class="qr-image" src="./assets/gmi-qrcode.jpg" alt="公众号二维码" />
           </div>
-          <p class="qr-copy">关注 <strong>GMI Cloud 黑板报</strong>，回复 <mark>上船开造</mark> 领取 Token 试用额度。</p>
         </div>
       </div>
       <div id="poster-modal" class="poster-modal" hidden>
@@ -135,10 +135,7 @@
           <div class="poster-frame">
             <img id="poster-preview" alt="AITI 个性海报预览" />
           </div>
-          <div class="poster-actions">
-            <a id="poster-download" class="primary-btn compact" download="aiti-poster.png">下载海报</a>
-            <button id="poster-copy-tip" class="ghost-btn" type="button">复制口令</button>
-          </div>
+          <p class="poster-save-tip">长按保存海报分享</p>
         </div>
       </div>
     </main>
