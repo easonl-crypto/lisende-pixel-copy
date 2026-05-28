@@ -595,7 +595,7 @@ async function copyResult() {
 async function claimToken() {
   await copyText(claimConfig.tokenKeyword);
   qrModal.hidden = false;
-  showToast(`已复制【${claimConfig.tokenKeyword}】，扫码关注后回复领取`);
+  showToast(`已复制【${claimConfig.tokenKeyword}】，扫码回复后领取`);
 }
 
 function closeQrModal() {
@@ -751,17 +751,17 @@ function drawPosterText(ctx, result) {
   ctx.fillStyle = "#07030f";
   ctx.font = "900 28px Arial, Microsoft YaHei";
   ctx.textAlign = "left";
-  ctx.fillText("常见模型", 118, 1104);
-  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1130, 455);
+  ctx.fillText("常见模型", 118, 1088);
+  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1114, 455);
 
   ctx.fillStyle = "#ffd943";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 8;
-  roundRect(ctx, 92, 1232, 716, 82, 0, true, true);
+  roundRect(ctx, 92, 1254, 716, 62, 0, true, true);
   ctx.fillStyle = "#07030f";
-  ctx.font = "900 28px Arial, Microsoft YaHei";
+  ctx.font = "900 26px Arial, Microsoft YaHei";
   ctx.textAlign = "center";
-  ctx.fillText(`扫码关注 回复【${claimConfig.posterKeyword}】立即来测`, 450, 1284);
+  ctx.fillText(`扫码回复【${claimConfig.posterKeyword}】立即来测`, 450, 1295);
 }
 
 function drawPosterPills(ctx, items, x, y, maxWidth) {
@@ -789,9 +789,9 @@ async function drawPosterQr(ctx) {
   ctx.fillStyle = "#ffffff";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 7;
-  ctx.fillRect(624, 1048, 164, 164);
-  ctx.strokeRect(624, 1048, 164, 164);
-  ctx.drawImage(qr, 637, 1061, 138, 138);
+  ctx.fillRect(624, 1084, 164, 164);
+  ctx.strokeRect(624, 1084, 164, 164);
+  ctx.drawImage(qr, 637, 1097, 138, 138);
 }
 
 async function drawPosterLogo(ctx) {
