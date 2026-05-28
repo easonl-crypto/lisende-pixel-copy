@@ -802,9 +802,9 @@ async function drawPosterQr(ctx) {
   ctx.fillStyle = "#ffffff";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 7;
-  ctx.fillRect(624, 1084, 164, 164);
-  ctx.strokeRect(624, 1084, 164, 164);
-  ctx.drawImage(qr, 637, 1097, 138, 138);
+  ctx.fillRect(624, 1066, 164, 164);
+  ctx.strokeRect(624, 1066, 164, 164);
+  ctx.drawImage(qr, 637, 1079, 138, 138);
 }
 
 async function drawPosterLogo(ctx) {
