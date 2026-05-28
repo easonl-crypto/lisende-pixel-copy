@@ -190,7 +190,7 @@ const state = {
 
 const claimConfig = {
   tokenKeyword: "上船开造",
-  posterKeyword: "我的AITI",
+  posterKeyword: "AITI",
 };
 
 const startScreen = document.querySelector("#start-screen");
