@@ -751,8 +751,8 @@ function drawPosterText(ctx, result) {
   ctx.fillStyle = "#07030f";
   ctx.font = "900 28px Arial, Microsoft YaHei";
   ctx.textAlign = "left";
-  ctx.fillText("常见模型", 118, 1088);
-  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1114, 455);
+  ctx.fillText("我最常用", 118, 1110);
+  drawPosterPills(ctx, result.models.slice(0, 4), 118, 1136, 455);
 
   ctx.fillStyle = "#ffd943";
   ctx.strokeStyle = "#07030f";
@@ -765,23 +765,36 @@ function drawPosterText(ctx, result) {
 }
 
 function drawPosterPills(ctx, items, x, y, maxWidth) {
-  let cursorX = x;
-  let cursorY = y;
   ctx.font = "900 22px Arial, Microsoft YaHei";
-  items.forEach((item) => {
-    const width = Math.min(maxWidth, ctx.measureText(item).width + 28);
-    if (cursorX + width > x + maxWidth) {
-      cursorX = x;
-      cursorY += 43;
-    }
+  const gap = 12;
+  const rowGap = 43;
+  const maxItems = Math.min(items.length, 4);
+  const columns = 2;
+  const colWidth = Math.floor((maxWidth - gap * (columns - 1)) / columns);
+  items.slice(0, maxItems).forEach((item, index) => {
+    const col = index % columns;
+    const row = Math.floor(index / columns);
+    const cursorX = x + col * (colWidth + gap);
+    const cursorY = y + row * rowGap;
+    const width = colWidth;
     ctx.fillStyle = "#ffffff";
     ctx.strokeStyle = "#07030f";
     ctx.lineWidth = 5;
     roundRect(ctx, cursorX, cursorY, width, 32, 0, true, true);
     ctx.fillStyle = "#07030f";
-    ctx.fillText(item, cursorX + 14, cursorY + 24);
-    cursorX += width + 12;
+    fitCanvasText(ctx, item, cursorX + 14, cursorY + 24, width - 28, 22, 15);
   });
+}
+
+function fitCanvasText(ctx, text, x, y, maxWidth, maxSize, minSize) {
+  let size = maxSize;
+  while (size > minSize) {
+    ctx.font = `900 ${size}px Arial, Microsoft YaHei`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+    size -= 1;
+  }
+  ctx.fillText(text, x, y);
+  ctx.font = "900 22px Arial, Microsoft YaHei";
 }
 
 async function drawPosterQr(ctx) {
