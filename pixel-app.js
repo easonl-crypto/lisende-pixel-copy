@@ -189,7 +189,8 @@ const state = {
 };
 
 const claimConfig = {
-  keyword: "我的AITI",
+  tokenKeyword: "上船开造",
+  posterKeyword: "我的AITI",
 };
 
 const startScreen = document.querySelector("#start-screen");
@@ -592,9 +593,9 @@ async function copyResult() {
 }
 
 async function claimToken() {
-  await copyText(claimConfig.keyword);
+  await copyText(claimConfig.tokenKeyword);
   qrModal.hidden = false;
-  showToast(`已复制【${claimConfig.keyword}】，扫码关注后立即来测`);
+  showToast(`已复制【${claimConfig.tokenKeyword}】，扫码关注后回复领取`);
 }
 
 function closeQrModal() {
@@ -632,8 +633,8 @@ function showToast(text) {
 }
 
 async function claimTokenOnly() {
-  await copyText(claimConfig.keyword);
-  showToast(`已复制【${claimConfig.keyword}】，去公众号回复即可开测`);
+  await copyText(claimConfig.tokenKeyword);
+  showToast(`已复制【${claimConfig.tokenKeyword}】，去公众号回复即可领取`);
 }
 
 function closePosterModal() {
@@ -750,8 +751,8 @@ function drawPosterText(ctx, result) {
   ctx.fillStyle = "#07030f";
   ctx.font = "900 28px Arial, Microsoft YaHei";
   ctx.textAlign = "left";
-  ctx.fillText("常见模型", 118, 1070);
-  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1096, 455);
+  ctx.fillText("常见模型", 118, 1104);
+  drawPosterPills(ctx, result.models.slice(0, 6), 118, 1130, 455);
 
   ctx.fillStyle = "#ffd943";
   ctx.strokeStyle = "#07030f";
@@ -759,8 +760,8 @@ function drawPosterText(ctx, result) {
   roundRect(ctx, 92, 1232, 716, 82, 0, true, true);
   ctx.fillStyle = "#07030f";
   ctx.font = "900 28px Arial, Microsoft YaHei";
-  ctx.textAlign = "left";
-  ctx.fillText("扫码关注 回复【我的AITI】立即来测", 122, 1284);
+  ctx.textAlign = "center";
+  ctx.fillText(`扫码关注 回复【${claimConfig.posterKeyword}】立即来测`, 450, 1284);
 }
 
 function drawPosterPills(ctx, items, x, y, maxWidth) {
@@ -788,9 +789,9 @@ async function drawPosterQr(ctx) {
   ctx.fillStyle = "#ffffff";
   ctx.strokeStyle = "#07030f";
   ctx.lineWidth = 7;
-  ctx.fillRect(624, 1012, 164, 164);
-  ctx.strokeRect(624, 1012, 164, 164);
-  ctx.drawImage(qr, 637, 1025, 138, 138);
+  ctx.fillRect(624, 1048, 164, 164);
+  ctx.strokeRect(624, 1048, 164, 164);
+  ctx.drawImage(qr, 637, 1061, 138, 138);
 }
 
 async function drawPosterLogo(ctx) {

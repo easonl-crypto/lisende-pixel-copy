@@ -2855,6 +2855,15 @@ h1::after {
   line-height: 1.35;
 }
 
+.hero .eyebrow {
+  justify-self: end;
+  margin: 0 clamp(20px, 7vw, 86px) 6px 0;
+  padding: 7px 18px 8px;
+  border-width: 5px;
+  box-shadow: 5px 5px 0 var(--game-black);
+  font-size: clamp(1rem, 2.1vw, 1.7rem);
+}
+
 .claim-qr {
   position: relative;
   z-index: 1;
@@ -2896,6 +2905,16 @@ h1::after {
   .claim-card {
     grid-template-columns: minmax(0, 1fr) minmax(92px, 120px);
     gap: 12px;
+  }
+
+  .hero .eyebrow {
+    justify-self: end;
+    max-width: none;
+    margin: 0 58px 4px 0;
+    padding: 6px 10px;
+    border-width: 4px;
+    font-size: 0.82rem;
+    box-shadow: 4px 4px 0 var(--game-black);
   }
 
   .claim-card strong {
